@@ -1,4 +1,4 @@
-const Item = require('./item');
+const Item = require('./room');
 
 //crud api
 Item.methods(['get','post','pot','delete','pet']);

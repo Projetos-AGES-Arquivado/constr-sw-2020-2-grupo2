@@ -7,6 +7,6 @@ module.exports = function(server) {
     server.use('/api',router);
 
     //Registering API methods in route
-    const intemService = require('../itens/itemService.js')
-    intemService.register(router,'/item')
+    const intemService = require('../itens/roomService.js')
+    intemService.register(router,'/room')
 }
