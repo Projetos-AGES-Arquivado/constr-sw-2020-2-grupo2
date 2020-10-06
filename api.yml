@@ -1,0 +1,181 @@
+swagger: "2.0"
+info:
+  description: "API do microserviço que gerencia `salas`"
+  version: "1.0.0"
+  title: "API salas"
+host: "localhost:3000"
+basePath: "/v1/api/"
+tags:
+- name: "salas"
+  description: "Manipulação de salas"
+schemes:
+- "https"
+- "http"
+paths:
+  /salas:
+    get:
+      tags:
+      - "salas"
+      summary: "Lista todos as salas"
+      operationId: "getSalas"
+      produces:
+      - "application/json"
+      responses:
+        "200":
+          description: "Ok"
+          schema:
+            $ref: "#/definitions/Salas"
+    post:
+      tags:
+      - "salas"
+      summary: "Cria uma sala"
+      operationId: "postSala"
+      parameters:
+      - in: "body"
+        name: "body"
+        required: true
+        schema:
+          $ref: "#/definitions/Sala"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      responses:
+        "202":
+          description: "Created"
+          schema:
+            $ref: "#/definitions/Sala"
+        "302":
+          description: "Found: Objeto já existente"
+  /Sala/{id}:
+    get:
+      tags:
+      - "salas"
+      summary: "Lista uma sala"
+      operationId: "getSala"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        "200":
+          description: "Ok"
+          schema:
+            $ref: "#/definitions/Sala"
+
+    put:
+      tags:
+      - "salas"
+      summary: "Atualiza uma sala"
+      operationId: "putSala"
+      consumes:
+      - "application/json"
+      - "application/xml"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "integer"
+        format: "int64"
+      - in: "body"
+        name: "body"
+        required: true
+        schema:
+          $ref: "#/definitions/Sala"
+      responses:
+        "200":
+          description: "Ok"
+        "404":
+          description: "Not found: Objeto não encontrado"
+    patch:
+      tags:
+      - "salas"
+      summary: "Atualiza parcialmente uma sala"
+      operationId: "patchSala"
+      consumes:
+      - "application/json"
+      - "application/xml"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "integer"
+        format: "int64"
+      - in: "body"
+        name: "body"
+        required: true
+        schema:
+          $ref: "#/definitions/Sala"
+      responses:
+        "200":
+          description: "Ok"
+        "404":
+          description: "Not found: Objeto não encontrado"
+    delete:
+      tags:
+      - "salas"
+      summary: "Deleta uma Sala"
+      operationId: "deleteSala"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "api_key"
+        in: "header"
+        required: false
+        type: "string"
+      - name: "id"
+        in: "path"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        "200":
+          description: "Ok"
+        "404":
+          description: "Not found: Objeto não encontrado"
+definitions:
+  Salas:
+    type: array
+    items:
+      $ref: "#/definitions/Sala"
+  Aluno:
+    type: "object"
+    required:
+    - "numero"
+    - "numeroPredio"
+    - "lotacao"
+    - "recursos"
+    - "presencial"
+    - "url"
+    properties:
+      numero:
+        type: "Number"
+        example: "302"
+      numeroPredio:
+        type: "Number"
+        example: "32"
+      lotacao:
+        type: "Number"
+        example: "60"
+      recursos:
+        items:
+          type: "string"
+          example: "projetor", "computador", "laboratório"
+      presencial:
+        items:
+          type: "string"
+          example: "sim", "nao"
+      url:
+        type: "string"
+        example: "https://www.zoom.com/ehosguri"
