@@ -35,7 +35,7 @@ paths:
         name: "body"
         required: true
         schema:
-          $ref: "#/definitions/Sala"
+          $ref: "#/definitions/Salas"
       consumes:
       - "application/json"
       produces:
@@ -44,7 +44,7 @@ paths:
         "202":
           description: "Created"
           schema:
-            $ref: "#/definitions/Sala"
+            $ref: "#/definitions/Salas"
         "302":
           description: "Found: Objeto já existente"
   /Sala/{id}:
@@ -65,7 +65,7 @@ paths:
         "200":
           description: "Ok"
           schema:
-            $ref: "#/definitions/Sala"
+            $ref: "#/definitions/Salas"
 
     put:
       tags:
@@ -88,7 +88,7 @@ paths:
         name: "body"
         required: true
         schema:
-          $ref: "#/definitions/Sala"
+          $ref: "#/definitions/Salas"
       responses:
         "200":
           description: "Ok"
@@ -115,7 +115,7 @@ paths:
         name: "body"
         required: true
         schema:
-          $ref: "#/definitions/Sala"
+          $ref: "#/definitions/Salas"
       responses:
         "200":
           description: "Ok"
@@ -148,8 +148,8 @@ definitions:
   Salas:
     type: array
     items:
-      $ref: "#/definitions/Sala"
-  Aluno:
+      $ref: "#/definitions/Salas"
+  Sala:
     type: "object"
     required:
     - "numero"
@@ -160,22 +160,25 @@ definitions:
     - "url"
     properties:
       numero:
-        type: "Number"
+        type: "number"
         example: "302"
       numeroPredio:
-        type: "Number"
+        type: "number"
         example: "32"
       lotacao:
-        type: "Number"
+        type: "number"
         example: "60"
       recursos:
         items:
           type: "string"
-          example: "projetor", "computador", "laboratório"
+          example: -"projetor"
+           -"computador"
+           -"laboratório"
       presencial:
         items:
           type: "string"
-          example: "sim", "nao"
+          example: -"sim"
+                   -"nao"
       url:
         type: "string"
         example: "https://www.zoom.com/ehosguri"
