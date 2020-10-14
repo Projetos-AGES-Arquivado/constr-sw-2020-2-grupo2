@@ -8,6 +8,8 @@ module.exports = function(app){
     router.get('/resource/:id', controller.room);
     router.post('/resource', controller.newRoom);
     router.delete('/resource/:id', controller.remove);
+    router.put('/resource/:id',controller.updateRoomAll);
+    router.patch('/resource/:id',controller.updateRoom);
 
     app.use('/', router)
 }

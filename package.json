@@ -12,6 +12,7 @@
     "body-parser": "^1.18.3",
     "express": "^4.16.4",
     "express-load": "^1.1.16",
+    "joi": "^17.2.1",
     "jsonwebtoken": "^8.5.0",
     "mongodb": "^3.1.13",
     "mongoose": "^5.4.19",
