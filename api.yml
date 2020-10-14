@@ -3,8 +3,8 @@ info:
   description: "API do microserviço que gerencia `salas`"
   version: "1.0.0"
   title: "API salas"
-host: "localhost:3000"
-basePath: "/v1/api/"
+host: "localhost:3001"
+basePath: "/"
 tags:
 - name: "salas"
   description: "Manipulação de salas"
@@ -12,7 +12,7 @@ schemes:
 - "https"
 - "http"
 paths:
-  /salas:
+  /resource:
     get:
       tags:
       - "salas"
@@ -41,13 +41,13 @@ paths:
       produces:
       - "application/json"
       responses:
-        "202":
+        "200":
           description: "Created"
           schema:
             $ref: "#/definitions/Salas"
         "302":
           description: "Found: Objeto já existente"
-  /Sala/{id}:
+  /resource/{id}:
     get:
       tags:
       - "salas"
@@ -148,7 +148,7 @@ definitions:
   Salas:
     type: array
     items:
-      $ref: "#/definitions/Salas"
+      $ref: "#/definitions/Sala"
   Sala:
     type: "object"
     required:
