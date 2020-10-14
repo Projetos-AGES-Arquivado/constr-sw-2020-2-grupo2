@@ -6,7 +6,7 @@ info:
 host: "localhost:3001"
 basePath: "/"
 tags:
-- name: "salas"
+- name: "rooms"
   description: "Manipulação de salas"
 schemes:
 - "https"
@@ -24,7 +24,7 @@ paths:
         "200":
           description: "Ok"
           schema:
-            $ref: "#/definitions/Salas"
+            $ref: "#/definitions/Rooms"
     post:
       tags:
       - "salas"
@@ -35,7 +35,7 @@ paths:
         name: "body"
         required: true
         schema:
-          $ref: "#/definitions/Salas"
+          $ref: "#/definitions/Rooms"
       consumes:
       - "application/json"
       produces:
@@ -44,7 +44,7 @@ paths:
         "200":
           description: "Created"
           schema:
-            $ref: "#/definitions/Salas"
+            $ref: "#/definitions/Rooms"
         "302":
           description: "Found: Objeto já existente"
   /resource/{id}:
@@ -65,8 +65,8 @@ paths:
         "200":
           description: "Ok"
           schema:
-            $ref: "#/definitions/Salas"
-
+            $ref: "#/definitions/Rooms"
+  
     put:
       tags:
       - "salas"
@@ -88,7 +88,7 @@ paths:
         name: "body"
         required: true
         schema:
-          $ref: "#/definitions/Salas"
+          $ref: "#/definitions/Rooms"
       responses:
         "200":
           description: "Ok"
@@ -115,7 +115,7 @@ paths:
         name: "body"
         required: true
         schema:
-          $ref: "#/definitions/Salas"
+          $ref: "#/definitions/Rooms"
       responses:
         "200":
           description: "Ok"
@@ -145,11 +145,11 @@ paths:
         "404":
           description: "Not found: Objeto não encontrado"
 definitions:
-  Salas:
+  Rooms:
     type: array
     items:
-      $ref: "#/definitions/Sala"
-  Sala:
+      $ref: "#/definitions/Room"
+  Room:
     type: "object"
     required:
     - "numero"
@@ -159,26 +159,27 @@ definitions:
     - "presencial"
     - "url"
     properties:
-      numero:
+      number:
         type: "number"
         example: "302"
-      numeroPredio:
+      towerNumber:
         type: "number"
         example: "32"
-      lotacao:
+      capacity:
         type: "number"
         example: "60"
-      recursos:
+      resources:
         items:
           type: "string"
           example: -"projetor"
            -"computador"
            -"laboratório"
-      presencial:
+      online:
         items:
-          type: "string"
-          example: -"sim"
-                   -"nao"
+          type: "boolean"
+          example: -"true"
+                   
       url:
         type: "string"
         example: "https://www.zoom.com/ehosguri"
+    
