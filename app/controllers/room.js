@@ -69,12 +69,13 @@ module.exports = function(app){
             const id = req.params.id;
             const query = req.body
             try{
-                const response = Room.findOneAndUpdate({_id:id},query).exec();
+                Room.findOneAndUpdate({_id:id},query).exec();
             }catch{
                 res.sendStatus(404)
+                res.send("Failed")
+
             }
             console.log(id)
-            console.log(response)
             res.json("sucess")
         }
         
