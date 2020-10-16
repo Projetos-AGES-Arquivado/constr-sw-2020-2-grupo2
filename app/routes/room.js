@@ -6,6 +6,7 @@ module.exports = function(app){
 
     router.get('/resource', controller.index);
     router.get('/resource/:id', controller.room);
+    router.get('/resource', controller.getByAtribute);
     router.post('/resource', controller.newRoom);
     router.delete('/resource/:id', controller.remove);
     router.put('/resource/:id',controller.updateRoomAll);

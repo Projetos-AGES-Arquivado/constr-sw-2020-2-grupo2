@@ -1,4 +1,5 @@
 const { schema } = require('../../config/schemas/schemas')
+const querystring = require('querystring');
 
 module.exports = function(app){
     var Room = app.models.room;
@@ -10,6 +11,7 @@ module.exports = function(app){
             })
             
         },
+
         newRoom:function(req,res){
             const room = new Room(req.body);
             room.save(function(err,room){
@@ -21,6 +23,7 @@ module.exports = function(app){
                     res.json(room);
             });
         },
+
         remove: function(req,res){
             const id = req.params.id;
 
@@ -31,6 +34,7 @@ module.exports = function(app){
                 res.status(500).end();
             })
         },
+
         room: async function(req,res){
             const id = req.params.id;
             const response = await Room.findById(id).exec();
@@ -38,10 +42,14 @@ module.exports = function(app){
             console.log(response)
             res.json(response)
         },
-        // getByAtribute: async function(req,res){
-        //     const atribute = req.params.atribute;
-        //     const 
-        // },
+
+        getByAtribute: function(req,res){
+            const atribute = req.params.atribute;
+            const parse = req.query;
+            console.log(parse);
+            res.sendStatus(200)
+        },
+
         updateRoomAll: function(req,res){
             let { error } = schema.validate(req.body)
             if (error) return res.status(400).send(error.details)

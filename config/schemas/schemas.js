@@ -16,6 +16,7 @@ const schema = Joi.object({
 
     online: Joi.boolean()
     .required(),
+    
     url: Joi.string()
     .required()
 })
