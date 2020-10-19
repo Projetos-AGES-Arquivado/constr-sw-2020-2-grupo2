@@ -3,7 +3,7 @@ info:
   description: API do microserviço que gerencia `salas`
   version: 1.0.0
   title: API salas
-host: 'localhost:3001'
+host: 'ec2-34-229-77-121.compute-1.amazonaws.com:3001'
 basePath: /
 tags:
   - name: rooms
@@ -24,6 +24,10 @@ paths:
           description: Ok
           schema:
             $ref: '#/definitions/Rooms'
+        '404':
+          description: 'Not Found: Objetos não encontrados'
+          schema:
+            $ref: '#/definitions/Rooms'
     post:
       tags:
         - salas
@@ -40,12 +44,12 @@ paths:
       produces:
         - application/json
       responses:
-        '200':
+        '201':
           description: Created
           schema:
             $ref: '#/definitions/Rooms'
-        '302':
-          description: 'Found: Objeto já existente'
+        '500':
+          description: 'Internal Server Error'
   '/resource/{id}':
     get:
       tags:
@@ -62,6 +66,10 @@ paths:
       responses:
         '200':
           description: Ok
+          schema:
+            $ref: '#/definitions/Rooms'
+        '404':
+        description: 'Not Found: Objeto não encontrado'
           schema:
             $ref: '#/definitions/Rooms'
     put:
@@ -116,6 +124,8 @@ paths:
           description: Ok
         '404':
           description: 'Not found: Objeto não encontrado'
+        '400':
+          description: 'Bad Request'
     delete:
       tags:
         - salas
@@ -135,9 +145,9 @@ paths:
           type: string
       responses:
         '200':
-          description: Ok
+          description: 'Ok'
         '404':
-          description: 'Not found: Objeto não encontrado'
+          description: 'Not Found: Objeto não encontrado'
 definitions:
   Rooms:
     type: array

@@ -60,16 +60,16 @@ module.exports = function(app){
         },
 
         updateRoom: function(req,res){
+
             const id = req.params.id;
             const query = req.body
             try{
-                const response = Room.findOneAndUpdate({_id:id},query).exec();
+                Room.findOneAndUpdate({_id:id},query).exec();
             }catch{
                 res.sendStatus(404)
             }
             console.log(id)
-            console.log(response)
-            res.json("sucess")
+            res.send("sucess")
         }
         
     
