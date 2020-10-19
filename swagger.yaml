@@ -1,0 +1,178 @@
+swagger: '2.0'
+info:
+  description: API do microserviço que gerencia `salas`
+  version: 1.0.0
+  title: API salas
+host: 'localhost:3001'
+basePath: /
+tags:
+  - name: rooms
+    description: Manipulação de salas
+schemes:
+  - http
+paths:
+  /resource:
+    get:
+      tags:
+        - salas
+      summary: Lista todos as salas
+      operationId: getSalas
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Ok
+          schema:
+            $ref: '#/definitions/Rooms'
+    post:
+      tags:
+        - salas
+      summary: Cria uma sala
+      operationId: postSala
+      parameters:
+        - in: body
+          name: body
+          required: true
+          schema:
+            $ref: '#/definitions/Room'
+      consumes: 
+      - application/json
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Created
+          schema:
+            $ref: '#/definitions/Rooms'
+        '302':
+          description: 'Found: Objeto já existente'
+  '/resource/{id}':
+    get:
+      tags:
+        - salas
+      summary: Lista uma sala
+      operationId: getSala
+      produces:
+        - application/json
+      parameters:
+        - name: id
+          in: path
+          required: true
+          type: string
+      responses:
+        '200':
+          description: Ok
+          schema:
+            $ref: '#/definitions/Rooms'
+    put:
+      tags:
+        - salas
+      summary: Atualiza uma sala
+      operationId: putSala
+      consumes:
+        - application/json
+        - application/xml
+      produces:
+        - application/xml
+        - application/json
+      parameters:
+        - name: id
+          in: path
+          required: true
+          type: string
+        - in: body
+          name: body
+          required: true
+          schema:
+            $ref: '#/definitions/Room'
+      responses:
+        '200':
+          description: Ok
+        '404':
+          description: 'Not found: Objeto não encontrado'
+    patch:
+      tags:
+        - salas
+      summary: Atualiza parcialmente uma sala
+      operationId: patchSala
+      consumes:
+        - application/json
+        - application/xml
+      produces:
+        - application/xml
+        - application/json
+      parameters:
+        - name: id
+          in: path
+          required: true
+          type: string
+        - in: body
+          name: body
+          required: true
+          schema:
+            $ref: '#/definitions/Room'
+      responses:
+        '200':
+          description: Ok
+        '404':
+          description: 'Not found: Objeto não encontrado'
+    delete:
+      tags:
+        - salas
+      summary: Deleta uma Sala
+      operationId: deleteSala
+      produces:
+        - application/xml
+        - application/json
+      parameters:
+        - name: api_key
+          in: header
+          required: false
+          type: string
+        - name: id
+          in: path
+          required: true
+          type: string
+      responses:
+        '200':
+          description: Ok
+        '404':
+          description: 'Not found: Objeto não encontrado'
+definitions:
+  Rooms:
+    type: array
+    items:
+      $ref: '#/definitions/Room'
+  Room:
+    type: object
+    required:
+      - number
+      - towerNumber
+      - capacity
+      - resources
+      - online
+      - url
+    properties:
+      number:
+        type: number
+      towerNumber:
+        type: number
+      capacity:
+        type: number
+      resources:
+        type: array
+        items:
+          type: string
+      online:
+        items:
+          type: boolean
+      url:
+        type: string
+    example:
+      number: '250'
+      towerNumber: '32'
+      capacity: 90
+      resources:
+        - nada
+      online: false
+      url: 'http://www.zoom.com/ehosguri'
