@@ -4,7 +4,6 @@ module.exports = function(app){
     var router = express.Router();
     var controller = app.controllers.room;
 
-    router.get('/resource', controller.index);
     router.get('/resource/:id', controller.room);
     router.get('/resource', controller.getByAtribute);
     router.post('/resource', controller.newRoom);

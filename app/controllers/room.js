@@ -5,12 +5,6 @@ module.exports = function(app){
     var Room = app.models.room;
 
     var controller = {
-        index: function(req,res){
-            Room.find({},[],{sort: {number:1} }).exec().then((rooms) => {
-                res.send(rooms);
-            })
-            
-        },
 
         newRoom:function(req,res){
             const room = new Room(req.body);
@@ -45,9 +39,10 @@ module.exports = function(app){
 
         getByAtribute: function(req,res){
             const atribute = req.params.atribute;
-            const parse = req.query;
-            console.log(parse);
-            res.sendStatus(200)
+            Room.find(req.query, function(err, data){
+                if(err) console.log(err)
+                res.json(data)
+            });
         },
 
         updateRoomAll: function(req,res){
