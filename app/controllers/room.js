@@ -65,7 +65,6 @@ module.exports = function(app){
         },
 
         updateRoom: function(req,res){
-
             const id = req.params.id;
             const query = req.body
             try{
