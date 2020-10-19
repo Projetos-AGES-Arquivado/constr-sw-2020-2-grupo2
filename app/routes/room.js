@@ -5,12 +5,12 @@ module.exports = function(app){
     var controller = app.controllers.room;
 
     router.get('/resource', controller.index);
-    router.get('/resource/:id', controller.findById);
-    router.get('/resource', controller.findByAtributes);
-    router.post('/resource', controller.createRoom);
+    router.get('/resource/:id', controller.room);
+    router.get('/resource', controller.getByAtribute);
+    router.post('/resource', controller.newRoom);
+    router.delete('/resource/:id', controller.remove);
+    router.put('/resource/:id',controller.updateRoomAll);
     router.patch('/resource/:id',controller.updateRoom);
-    router.put('/resource/:id',controller.replaceRoom);
-    router.delete('/resource/:id', controller.deleteRoom);
-    
+
     app.use('/', router)
 }
