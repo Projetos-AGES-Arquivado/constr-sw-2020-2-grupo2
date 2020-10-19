@@ -1,4 +1,8 @@
 var app = require('./config/express')();
+var swaggerUi = require('swagger-ui-express');
+var swaggerDocument = require('./docs/swagger.json');
+
+app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 
 // require('./config/database')('mongodb://localhost:27017/proj');
