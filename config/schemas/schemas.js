@@ -11,7 +11,7 @@ const schema = Joi.object({
     capacity: Joi.number()
     .required(),
 
-    resources: Joi.array() // TODO
+    resources: Joi.array()
     .required(),
 
     online: Joi.boolean()
