@@ -1,18 +1,8 @@
-<h1># boilerplateNodeJS</h1> Level: Basic
-
-<p align="center">
-  <img width="600" height="150" src="https://user-images.githubusercontent.com/42190220/65777863-302af900-e11b-11e9-90e3-6935a88cefae.png">
-</p>
-</br></br>
-
-<p align="center">
-Quick start for base app with user validation JWT, mongoDb connection and mongoose, server express configured! Using MVC architecture. Example of Model,View and Controller already started.
-</p>
-
-</br>
+ API de alunos
+> Autores: Carlo José, Frederico Thofehrn, Leonardo Veiga, Yuri Seixas 
 
 
-Get start...
+
 <h4>Prerequisites:</h4>
 
 * NodeJs  
