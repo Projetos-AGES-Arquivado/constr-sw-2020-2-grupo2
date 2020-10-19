@@ -54,7 +54,7 @@ module.exports = function(app){
             }
             console.log(id)
             console.log(response)
-            res.status(204).json("sucess")
+            res.status(204).send("sucess")
         },
 
         replaceRoom: function(req,res){
@@ -68,7 +68,7 @@ module.exports = function(app){
                 res.sendStatus(404)
             }
             console.log(id)
-            res.status(204).json("sucess")
+            res.status(204).send("sucess")
         },
 
         deleteRoom: function(req,res){
@@ -76,7 +76,7 @@ module.exports = function(app){
 
             Room.deleteOne({_id: id}, function(err){
                 if(!err)
-                    res.status(204).json({message: 'sucess'})
+                    res.status(204).send({message: 'sucess'})
                 else
                     res.status(500).end()
             })
