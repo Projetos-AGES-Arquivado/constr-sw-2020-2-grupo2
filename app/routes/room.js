@@ -4,12 +4,12 @@ module.exports = function(app){
     var router = express.Router();
     var controller = app.controllers.room;
 
-    router.get('/resource/:id', controller.room);
-    router.get('/resource', controller.getByAtribute);
-    router.post('/resource', controller.newRoom);
-    router.delete('/resource/:id', controller.remove);
-    router.put('/resource/:id',controller.updateRoomAll);
-    router.patch('/resource/:id',controller.updateRoom);
+    router.get('/room/:id', controller.findById);
+    router.get('/room', controller.getByAtributes);
+    router.post('/room', controller.createRoom);
+    router.put('/room/:id',controller.replaceRoom);
+    router.patch('/room/:id',controller.updateRoom);
+    router.delete('/room/:id', controller.deleteRoom);
 
     app.use('/', router)
 }
