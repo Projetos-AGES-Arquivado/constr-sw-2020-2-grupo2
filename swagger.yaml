@@ -3,7 +3,7 @@ info:
   description: API do microserviço que gerencia `salas`
   version: 1.0.0
   title: API salas
-host: 'ec2-34-229-77-121.compute-1.amazonaws.com:3001'
+host: 'localhost:3001'
 basePath: /
 tags:
   - name: rooms
@@ -11,7 +11,7 @@ tags:
 schemes:
   - http
 paths:
-  /resource:
+  /room:
     get:
       tags:
         - salas
@@ -50,7 +50,7 @@ paths:
             $ref: '#/definitions/Rooms'
         '500':
           description: 'Internal Server Error'
-  '/resource/{id}':
+  '/room/{id}':
     get:
       tags:
         - salas

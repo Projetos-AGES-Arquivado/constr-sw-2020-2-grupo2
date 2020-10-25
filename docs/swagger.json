@@ -5,7 +5,7 @@
     "version": "1.0.0",
     "title": "API salas"
   },
-  "host": "ec2-34-229-77-121.compute-1.amazonaws.com:3001",
+  "host": "localhost:3001",
   "basePath": "/",
   "tags": [
     {
@@ -17,7 +17,7 @@
     "http"
   ],
   "paths": {
-    "/resource": {
+    "/room": {
       "get": {
         "tags": [
           "salas"
@@ -62,7 +62,7 @@
           "application/json"
         ],
         "responses": {
-          "201": {
+          "200": {
             "description": "Created",
             "schema": {
               "$ref": "#/definitions/Rooms"
@@ -74,7 +74,7 @@
         }
       }
     },
-    "/resource/{id}": {
+    "/room/{id}": {
       "get": {
         "tags": [
           "salas"
