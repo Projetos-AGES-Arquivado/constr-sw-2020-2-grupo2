@@ -18,6 +18,12 @@ const schema = Joi.object({
     .required(),
     
     url: Joi.string()
+    .required(),
+
+    turmas: Joi.array()
+    .required(),
+
+    aulas: Joi.array()
     .required()
 })
 
