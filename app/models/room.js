@@ -27,7 +27,10 @@ module.exports = function(){
         url: {
             type: String,
             required: false,
-        }, 
+        },
+        turmas: {
+            type: Array,
+        }
     });
 
     return mongoose.model('Room', schema, 'rooms');

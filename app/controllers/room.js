@@ -1,5 +1,6 @@
 const { schema } = require('../../config/schemas/schemas')
 const querystring = require('querystring');
+const http = require('http');
 
 module.exports = function(app){
     var Room = app.models.room;
