@@ -1,6 +1,48 @@
 const { schema } = require('../../config/schemas/schemas')
 const querystring = require('querystring');
 const http = require('http');
+let classes = []
+
+function returnPromisse(result){
+    classes.push(result)
+
+}
+
+function returnPromisseError(result){
+    console.log('error')
+}
+
+async function buildClasses(room_classes){
+
+    
+
+    room_classes.forEach(element => {
+
+        const url = `http://ec2-34-238-114-89.compute-1.amazonaws.com:3000/turma/${element}`
+        const aux_class = new Promise((resolve) => { http.get(url, function (response) {
+            response.setEncoding('utf8')
+            let rawData = ''
+            response.on('data', (chunk) => {
+              rawData += chunk
+            })
+            response.on('end', () => {
+              try {
+                const parsedData = JSON.parse(rawData)
+                resolve(parsedData)
+              } catch (e) {
+                resolve(element)
+              }
+            })
+          })
+        })
+
+        classes.push(aux_class)
+        //aux_class.then(returnPromisse,returnPromisseError)
+        //classes.push(element)
+    });
+
+    return await Promise.all(classes)
+}
 
 module.exports = function(app){
     var Room = app.models.room;
@@ -9,7 +51,9 @@ module.exports = function(app){
 
         findById: function(req,res){
             const id = req.params.id
-            const response = Room.findById(id, function(err, data){
+            const response = Room.findById(id, async function(err, data){
+                const aux = await buildClasses(data._doc.turmas)
+                data._doc.turmas = aux
                 if(err) console.log(err);
                 else if(data) res.json(data);
                 else res.sendStatus(404);
