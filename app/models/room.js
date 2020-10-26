@@ -29,10 +29,10 @@ module.exports = function(){
             required: false,
         },
         turmas: {
-            type: Array,
+            type: Array
         },
         aulas:{
-            type:Array
+            type: Array
         }
     });
 

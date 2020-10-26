@@ -54,7 +54,7 @@ paths:
     get:
       tags:
         - salas
-      summary: Lista uma sala
+      summary: Lista uma sala pelo seu id
       operationId: getSala
       produces:
         - application/json
@@ -75,7 +75,7 @@ paths:
     put:
       tags:
         - salas
-      summary: Atualiza uma sala
+      summary: Atualiza uma sala pelo seu id
       operationId: putSala
       consumes:
         - application/json
@@ -101,7 +101,7 @@ paths:
     patch:
       tags:
         - salas
-      summary: Atualiza parcialmente uma sala
+      summary: Atualiza parcialmente uma sala pelo seu id
       operationId: patchSala
       consumes:
         - application/json
@@ -129,7 +129,7 @@ paths:
     delete:
       tags:
         - salas
-      summary: Deleta uma Sala
+      summary: Deleta uma Sala pelo seu id
       operationId: deleteSala
       produces:
         - application/xml
@@ -186,3 +186,9 @@ definitions:
         - nada
       online: false
       url: 'http://www.zoom.com/ehosguri'
+      turmas: 
+        - '5f9375c46c782394b6e84cc0'
+      aulas:
+        - '5f8e0e68dd385b00119407fa'
+        - '5f91fca7dd385b00119407fb'
+
