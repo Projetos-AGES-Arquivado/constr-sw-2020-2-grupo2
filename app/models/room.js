@@ -30,6 +30,9 @@ module.exports = function(){
         },
         turmas: {
             type: Array,
+        },
+        aulas:{
+            type:Array
         }
     });
 

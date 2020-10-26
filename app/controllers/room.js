@@ -2,6 +2,7 @@ const { schema } = require('../../config/schemas/schemas')
 const querystring = require('querystring');
 const http = require('http');
 let classes = []
+let aulas = []
 
 function returnPromisse(result){
     classes.push(result)
@@ -44,6 +45,38 @@ async function buildClasses(room_classes){
     return await Promise.all(classes)
 }
 
+async function fazAulas(sala_aulas){
+
+    
+
+    sala_aulas.forEach(element => {
+
+        const url = `http://admin:admin@ec2-18-218-177-125.us-east-2.compute.amazonaws.com:3000/api/v1/classes/${element}`
+        const aux_class = new Promise((resolve) => { http.get(url, function (response) {
+            response.setEncoding('utf8')
+            let rawData = ''
+            response.on('data', (chunk) => {
+              rawData += chunk
+            })
+            response.on('end', () => {
+              try {
+                const parsedData = JSON.parse(rawData)
+                resolve(parsedData)
+              } catch (e) {
+                resolve(element)
+              }
+            })
+          })
+        })
+
+        aulas.push(aux_class)
+        //aux_class.then(returnPromisse,returnPromisseError)
+        //classes.push(element)
+    });
+
+    return await Promise.all(aulas)
+}
+
 module.exports = function(app){
     var Room = app.models.room;
 
@@ -52,8 +85,13 @@ module.exports = function(app){
         findById: function(req,res){
             const id = req.params.id
             const response = Room.findById(id, async function(err, data){
+                //grupo 6
                 const aux = await buildClasses(data._doc.turmas)
                 data._doc.turmas = aux
+
+                //grupo 4
+                const aux_aulas = await fazAulas(data._doc.aulas)
+                data._doc.aulas = aux_aulas
                 if(err) console.log(err);
                 else if(data) res.json(data);
                 else res.sendStatus(404);
