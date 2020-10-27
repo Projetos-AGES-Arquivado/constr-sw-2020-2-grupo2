@@ -43,7 +43,7 @@
         "tags": [
           "salas"
         ],
-        "summary": "Cria uma sala",
+        "summary": "Cria uma sala nova",
         "operationId": "postSala",
         "parameters": [
           {
