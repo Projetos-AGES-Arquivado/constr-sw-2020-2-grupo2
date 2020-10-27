@@ -5,7 +5,7 @@
     "version": "1.0.0",
     "title": "API salas"
   },
-  "host": "localhost:3001",
+  "host": "http://ec2-3-128-87-176.us-east-2.compute.amazonaws.com:3001/docs/",
   "basePath": "/",
   "tags": [
     {
@@ -62,7 +62,7 @@
           "application/json"
         ],
         "responses": {
-          "200": {
+          "201": {
             "description": "Created",
             "schema": {
               "$ref": "#/definitions/Rooms"
