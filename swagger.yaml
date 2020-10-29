@@ -3,7 +3,7 @@ info:
   description: API do microserviço que gerencia `salas`
   version: 1.0.0
   title: API salas
-host: 'ec2-3-23-106-145.us-east-2.compute.amazonaws.com:3001'
+host: '3.23.106.145:3001:3001'
 basePath: /
 tags:
   - name: rooms
