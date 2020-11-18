@@ -1,7 +1,4 @@
- API de Salas
-> Autores: Carlo José, Frederico Thofehrn, Leonardo Veiga, Yuri Seixas 
-
-UI de Alunos
+# API de Salas | UI de Alunos
 > Autores: Carlo José, Frederico Thofehrn, Leonardo Veiga, Yuri Seixas 
 
 <h4>Prerequisites:</h4>
