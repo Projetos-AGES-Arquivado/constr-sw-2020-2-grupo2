@@ -1,0 +1,50 @@
+﻿<!--
+<ul>
+    <li *ngFor="let student of students">
+        {{student.name}} ({{student.cpf}} {{student.cpf}})
+        - <a (click)="deleteStudent(student.id)" class="text-danger">Delete</a>
+    </li>
+</ul>
+-->
+
+<div class="panel-group">
+  <div class="panel panel-default" style="background: white; margin-bottom: 0; border-radius: 4px;"> 
+    <div class="panel-heading">
+      <div class="row" style="margin: 10px;">
+        <div class="col-sm-9 float-left">
+          <h1>Alunos</h1>
+        </div>
+        <div class="col-sm-1 float-right" style="margin: 10px; text-align: right;">
+          <button type="button" class="btn btn-primary" style="margin-left: 70px;" routerLink="/register">Registrar</button>
+        </div>
+      </div>
+    </div>
+    <div class="panel-body">
+      <div class="table-responsive">
+        <table class="table table-hover ">
+          <thead>
+            <tr>
+              <th style="text-align: center;">Nome</th>
+              <th style="text-align: center;">Matrícula</th>
+              <th style="text-align: center;">Email</th>
+              <th style="text-align: center;">CPF</th>
+              <th style="text-align: center;">Editar</th>
+              <th style="text-align: center;">Excluir</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let student of students">
+              <td style="text-align: center;">{{student.name}}</td>
+              <td style="text-align: center;">{{student.matriculation}}</td>
+              <td style="text-align: center;">{{student.email}}</td>
+              <td style="text-align: center;">{{student.cpf}}</td>
+              <td style="text-align: center;"><button (click)="editStudent(student.id)" class="btn btn-primary">Editar</button>
+              <td style="text-align: center;"><button (click)="deleteStudent(student.id)" class="btn btn-danger">Deletar</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      </div>
+  </div>
+</div>
