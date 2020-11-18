@@ -1,5 +1,18 @@
-# angular-7-registration-login-example
+# UI de Alunos
+> Autores: Carlo José, Frederico Thofehrn, Leonardo Veiga, Yuri Seixas 
 
-Angular 7 User Registration and Login Example with Webpack 4
+<h4>Prerequisites:</h4>
 
-Full tutorial with example available at http://jasonwatmore.com/post/2018/10/29/angular-7-user-registration-and-login-example-tutorial
+* NodeJs  
+* MongoDb
+* Angular 7
+
+<h4>Steps run:</h4>
+
+1. Clone the repository
+2. Run MongoDb
+3. Go to the back-end or front-end project root
+4. Run the command: "npm install"
+5. Run the command: "npm start" or "nodemon"
+
+And... ok, hands'on!
