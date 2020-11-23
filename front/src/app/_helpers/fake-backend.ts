@@ -34,6 +34,8 @@ export class FakeBackendInterceptor implements HttpInterceptor {
                 //    return deleteUser();
                 case url.endsWith('/students/register') && method === 'POST':
                     return registerStudent();
+                case url.match(/\/students\/\d+$/) && method === 'PUT':
+                    return updateStudent();
                 case url.endsWith('/students') && method === 'GET':
                     return getStudents();
                 case url.match(/\/students\/\d+$/) && method === 'GET':
@@ -51,13 +53,26 @@ export class FakeBackendInterceptor implements HttpInterceptor {
         function registerStudent() {
             const student = body
 
-            if (students.find(x => x.name === student.name)) {
-                return error('Name "' + student.name + '" is already taken')
+            if (students.find(x => x.cpf === student.cpf)) {
+                return error('Name "' + student.cpf + '" is already taken')
             }
 
-            student.id = students.length ? Math.max(...students.map(x => x.id)) + 1 : 1;
             students.push(student);
             localStorage.setItem('students', JSON.stringify(students));
+
+            return ok();
+        }
+
+        function updateStudent() {
+            const student = body
+
+            if (students.find(x => x.cpf === student.cpf)) {
+                students = students.filter(x => x.cpf !== idFromUrl());
+                students.push(student);
+                localStorage.setItem('students', JSON.stringify(students));
+            } else {
+                return error('Aluno "' + student.name + '" não foi encontrado para ser atualizado')
+            }
 
             return ok();
         }
@@ -70,7 +85,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
         function getStudentById() {
             //if (!isLoggedIn()) return unauthorized();
 
-            const student = students.find(x => x.id == idFromUrl());
+            const student = students.find(x => x.cpf == idFromUrl());
             return ok(student);
         }
 

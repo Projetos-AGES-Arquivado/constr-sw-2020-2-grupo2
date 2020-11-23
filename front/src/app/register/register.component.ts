@@ -1,41 +1,54 @@
-﻿import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+﻿/*eslint no-underscore-dangle: ["error", { "allow": ["_id"] }]*/
+
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
 
-import { AlertService, UserService, StudentService, AuthenticationService } from '@/_services';
+import { AlertService, StudentService } from '@/_services';
+import { Student } from '@/_models';
 
 @Component({templateUrl: 'register.component.html'})
 export class RegisterComponent implements OnInit {
     registerForm: FormGroup;
+    student;
     loading = false;
     submitted = false;
 
     constructor(
         private formBuilder: FormBuilder,
         private router: Router,
-        //private authenticationService: AuthenticationService,
-        //private userService: UserService,
         private studentService: StudentService,
-        private alertService: AlertService
+        private alertService: AlertService,
+        private route: ActivatedRoute
     ) { 
-        // redirect to home if already logged in
-        //if (this.authenticationService.currentUserValue) { 
-        //    this.router.navigate(['/']);
-        //}
     }
 
     ngOnInit() {
-        this.registerForm = this.formBuilder.group({
-            name:           ['', Validators.required],
-            matriculation:  ['', Validators.required],
-            email:          ['', Validators.required],
-            cpf:            ['', Validators.required],
-            rg:             ['', Validators.required],
-            phone1:         ['', Validators.required],
-            phone2:         ['', Validators.required]
-            //password: ['', [Validators.required, Validators.minLength(6)]]
+        this.route
+        .queryParams
+        .subscribe(params => {
+            // Defaults to 0 if no query param provided.
+            this.student = JSON.parse(params.student);
         });
+
+
+        //if(this.student) {
+            //student = this.studentService.getById(this.studentId).pipe(first()).pipe(student => {
+            //    this.updateForm(student)
+            //  });
+
+        //} 
+
+        this.registerForm = this.formBuilder.group({
+            name:           [this.student ? this.student.name           : '' , Validators.required],
+            registration:   [this.student ? this.student.registration   : '' , Validators.required],
+            email:          [this.student ? this.student.email          : '' , Validators.required],
+            cpf:            [this.student ? this.student.cpf            : '' , Validators.required],
+            rg:             [this.student ? this.student.rg             : '' , Validators.required],
+            phones:         [this.student ? this.student.phones         : [] , Validators.required]
+        });
+
     }
 
     // convenience getter for easy access to form fields
@@ -50,11 +63,57 @@ export class RegisterComponent implements OnInit {
         }
 
         this.loading = true;
-        this.studentService.register(this.registerForm.value)
+
+        if(this.student) {
+            this.update();
+        } else {
+            this.register();
+        }
+        
+    }
+
+    register() {
+
+        let createdStudent = {
+            name: this.registerForm.value.name,
+            email: this.registerForm.value.email,
+            phones: [this.registerForm.value.phones],
+            cpf: this.registerForm.value.cpf,
+            rg: this.registerForm.value.rg,
+            birthdate: "2020-01-01",
+            registration: this.registerForm.value.registration
+        }
+
+        this.studentService.register(createdStudent)
             .pipe(first())
             .subscribe(
                 data => {
                     this.alertService.success('Aluno registrado com sucesso!', true);
+                    this.router.navigate(['/']);
+                },
+                error => {
+                    this.alertService.error(error);
+                    this.loading = false;
+                });
+    }
+
+    update() {
+
+        let updatedStudent = {
+            name: this.registerForm.value.name,
+            email: this.registerForm.value.email,
+            phones: [this.registerForm.value.phones],
+            cpf: this.registerForm.value.cpf,
+            rg: this.registerForm.value.rg,
+            birthdate: this.student.birthdate,
+            registration: this.registerForm.value.registration
+        }
+
+        this.studentService.update(this.student._id, updatedStudent)
+            .pipe(first())
+            .subscribe(
+                data => {
+                    this.alertService.success('Aluno atualizado com sucesso!', true);
                     this.router.navigate(['/']);
                 },
                 error => {

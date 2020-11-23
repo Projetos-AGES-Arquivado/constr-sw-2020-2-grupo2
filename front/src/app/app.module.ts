@@ -12,7 +12,6 @@ import { routing }        from './app.routing';
 import { AlertComponent } from './_components';
 import { JwtInterceptor, ErrorInterceptor } from './_helpers';
 import { HomeComponent } from './home';
-import { LoginComponent } from './login';
 import { RegisterComponent } from './register';
 
 @NgModule({
@@ -26,7 +25,6 @@ import { RegisterComponent } from './register';
         AppComponent,
         AlertComponent,
         HomeComponent,
-        //LoginComponent,
         RegisterComponent
     ],
     providers: [

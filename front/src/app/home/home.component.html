@@ -6,7 +6,6 @@
     </li>
 </ul>
 -->
-
 <div class="panel-group">
   <div class="panel panel-default" style="background: white; margin-bottom: 0; border-radius: 4px;"> 
     <div class="panel-heading">
@@ -35,11 +34,19 @@
           <tbody>
             <tr *ngFor="let student of students">
               <td style="text-align: center;">{{student.name}}</td>
-              <td style="text-align: center;">{{student.matriculation}}</td>
+              <td style="text-align: center;">{{student.registration}}</td>
               <td style="text-align: center;">{{student.email}}</td>
               <td style="text-align: center;">{{student.cpf}}</td>
-              <td style="text-align: center;"><button (click)="editStudent(student.id)" class="btn btn-primary">Editar</button>
-              <td style="text-align: center;"><button (click)="deleteStudent(student.id)" class="btn btn-danger">Deletar</button>
+              <!--<td style="text-align: center;"><button [routerLink]="['/register']" [queryParams]="{prop: '{{student.name}}'}" class="btn btn-primary">Editar</button>-->
+              <td style="text-align: center;">
+                <a (click)="editStudent(student)">
+                  <img src="https://www.flaticon.com/svg/static/icons/svg/61/61456.svg" style="width: 20px;"/>
+                </a>
+              </td>
+              <td style="text-align: center;">
+                <a (click)="deleteStudent(student._id)">
+                  <img src="https://www.flaticon.com/svg/static/icons/svg/3096/3096687.svg" style="width: 20px;"/>
+                </a>
               </td>
             </tr>
           </tbody>

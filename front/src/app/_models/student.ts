@@ -1,11 +1,12 @@
-﻿export class Student {
+﻿/*eslint no-underscore-dangle: ["error", { "allow": ["_id"] }]*/
+
+export class Student {
     id: number
     name: string;
-    matriculation: number;
     email: string;
-    cpf: number;
-    rg: number;
-    //birthday: Date;
-    phone1: string;
-    phone2: string;
+    phones: Array<string>;
+    cpf: string;
+    rg: string;
+    birthdate: string;
+    registration: string;
 }
