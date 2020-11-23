@@ -1,7 +1,7 @@
 ﻿/*eslint no-underscore-dangle: ["error", { "allow": ["_id"] }]*/
 
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 
 import { Student } from '@/_models';
 
@@ -17,6 +17,11 @@ export class StudentService {
     getAll() {
         //return this.http.get<Student[]>(`${config.apiUrl}/alunos`);      
         return this.http.get<any[]>(`${config.apiUrl}/alunos`);
+    }
+
+    getByParams(key, value) {
+        let params = new HttpParams().set(key, value);
+        return this.http.get<any[]>(`${config.apiUrl}/alunos`, { params: params });
     }
 
     getById(id: number) {

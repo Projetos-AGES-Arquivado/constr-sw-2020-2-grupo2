@@ -13,6 +13,7 @@ import { AlertComponent } from './_components';
 import { JwtInterceptor, ErrorInterceptor } from './_helpers';
 import { HomeComponent } from './home';
 import { RegisterComponent } from './register';
+import { DatePipe } from '@angular/common';
 
 @NgModule({
     imports: [
@@ -30,6 +31,8 @@ import { RegisterComponent } from './register';
     providers: [
         { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
         { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+        
+        DatePipe,
 
         // provider used to create fake backend
         fakeBackendProvider

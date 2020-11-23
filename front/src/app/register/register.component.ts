@@ -6,7 +6,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
 
 import { AlertService, StudentService } from '@/_services';
-import { Student } from '@/_models';
+import { DatePipe } from '@angular/common';
 
 @Component({templateUrl: 'register.component.html'})
 export class RegisterComponent implements OnInit {
@@ -20,11 +20,15 @@ export class RegisterComponent implements OnInit {
         private router: Router,
         private studentService: StudentService,
         private alertService: AlertService,
-        private route: ActivatedRoute
+        private route: ActivatedRoute,
+        private datePipe: DatePipe
     ) { 
     }
 
     ngOnInit() {
+
+        var yyyyMMdd = this.datePipe.transform(new Date(),"yyyy-MM-dd");
+
         this.route
         .queryParams
         .subscribe(params => {
@@ -37,7 +41,6 @@ export class RegisterComponent implements OnInit {
             //student = this.studentService.getById(this.studentId).pipe(first()).pipe(student => {
             //    this.updateForm(student)
             //  });
-
         //} 
 
         this.registerForm = this.formBuilder.group({
@@ -46,7 +49,9 @@ export class RegisterComponent implements OnInit {
             email:          [this.student ? this.student.email          : '' , Validators.required],
             cpf:            [this.student ? this.student.cpf            : '' , Validators.required],
             rg:             [this.student ? this.student.rg             : '' , Validators.required],
-            phones:         [this.student ? this.student.phones         : [] , Validators.required]
+            birthdate:      [this.student ? this.student.birthdate      : '' , Validators.required],
+            phone1:         [this.student ? this.student.phones[0]      : '' , Validators.required],
+            phone2:         [this.student ? this.student.phones[1]      : '']
         });
 
     }
@@ -77,10 +82,10 @@ export class RegisterComponent implements OnInit {
         let createdStudent = {
             name: this.registerForm.value.name,
             email: this.registerForm.value.email,
-            phones: [this.registerForm.value.phones],
+            phones: [this.registerForm.value.phone1,this.registerForm.value.phone2],
             cpf: this.registerForm.value.cpf,
             rg: this.registerForm.value.rg,
-            birthdate: "2020-01-01",
+            birthdate: this.datePipe.transform(this.registerForm.value.birthdate, "yyyy-MM-dd"),
             registration: this.registerForm.value.registration
         }
 
@@ -102,10 +107,10 @@ export class RegisterComponent implements OnInit {
         let updatedStudent = {
             name: this.registerForm.value.name,
             email: this.registerForm.value.email,
-            phones: [this.registerForm.value.phones],
+            phones: [this.registerForm.value.phone1,this.registerForm.value.phone2],
             cpf: this.registerForm.value.cpf,
             rg: this.registerForm.value.rg,
-            birthdate: this.student.birthdate,
+            birthdate: this.datePipe.transform(this.registerForm.value.birthdate, "yyyy-MM-dd"),
             registration: this.registerForm.value.registration
         }
 

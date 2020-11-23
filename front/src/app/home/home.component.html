@@ -1,26 +1,28 @@
-﻿<!--
-<ul>
-    <li *ngFor="let student of students">
-        {{student.name}} ({{student.cpf}} {{student.cpf}})
-        - <a (click)="deleteStudent(student.id)" class="text-danger">Delete</a>
-    </li>
-</ul>
--->
-<div class="panel-group">
-  <div class="panel panel-default" style="background: white; margin-bottom: 0; border-radius: 4px;"> 
+﻿<div class="panel-group">
+  <div class="row page-header">
+    <div class="col-sm-6">
+      <h1>Alunos</h1>
+    </div>
+    <div class="col-sm-6">
+        <button type="button" class="btn btn-primary btn-circle float-right" routerLink="/register" style="background-color: #1976D2;">
+            <img class="white-filter" src="https://www.flaticon.com/svg/static/icons/svg/1237/1237946.svg" style="width: 20px;"/>
+        </button>
+    </div>
+  </div>
+  <div class="panel panel-default main-panel"> 
     <div class="panel-heading">
       <div class="row" style="margin: 10px;">
-        <div class="col-sm-9 float-left">
-          <h1>Alunos</h1>
+        <div class="col-sm-7 float-left table-title">
+          <h4>Alunos</h4>
         </div>
-        <div class="col-sm-1 float-right" style="margin: 10px; text-align: right;">
-          <button type="button" class="btn btn-primary" style="margin-left: 70px;" routerLink="/register">Registrar</button>
+        <div class="col-sm-5 table-title">
+          <input class="table-search" placeholder="Search" (change)="searchStudentsByParam($event.target.value)" style="width: 90%;">
         </div>
       </div>
     </div>
     <div class="panel-body">
       <div class="table-responsive">
-        <table class="table table-hover ">
+        <table class="table table-responsive-md btn-table">
           <thead>
             <tr>
               <th style="text-align: center;">Nome</th>

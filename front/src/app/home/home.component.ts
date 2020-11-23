@@ -28,6 +28,20 @@ export class HomeComponent implements OnInit {
         });
     }
 
+    searchStudentsByParam(searchValue: string) {
+        if(searchValue != "") {
+            this.loadStudentsByParam(searchValue);
+        } else {
+            this.loadAllStudents();
+        }
+    }
+
+    private loadStudentsByParam(searchValue: string) {
+        this.studentService.getByParams("name",searchValue).pipe(first()).subscribe(students => {
+            this.students = students;
+        });
+    }
+
     private loadAllStudents() {
         this.studentService.getAll().pipe(first()).subscribe(students => {
             this.students = students;

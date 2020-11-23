@@ -1,67 +1,98 @@
-﻿<h2>Register</h2>
-<form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
-    <div class="form-group">
-        <label for="name">Nome</label>
-        <input type="text" formControlName="name" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.name.errors }" />
-        <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
-            <div *ngIf="f.name.errors.required">Nome é obrigatório</div>
+﻿<div class="panel-group">
+    <div class="row page-header">
+        <div class="col-sm-6">
+          <h1>
+            <span *ngIf="student">
+                Atualizar Aluno
+            </span>
+            <span *ngIf="!student">
+                Cadastrar Aluno
+            </span>
+          </h1>
         </div>
     </div>
-    <div class="form-group">
-        <label for="registration">Matrícula</label>
-        <input type="text" formControlName="registration" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.registration.errors }" />
-        <div *ngIf="submitted && f.registration.errors" class="invalid-feedback">
-            <div *ngIf="f.registration.errors.required">Matrícula é obtrigatório</div>
+    <div class="panel panel-default main-panel"> 
+        <div class="panel-body form-panel">
+            <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label for="name">Nome</label>
+                            <input type="text" formControlName="name" class="form-control" placeholder="Nome" [ngClass]="{ 'is-invalid': submitted && f.name.errors }" />
+                            <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+                                <div *ngIf="f.name.errors.required">Nome é obrigatório</div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" formControlName="email" class="form-control" placeholder="Email" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
+                            <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                                <div *ngIf="f.email.errors.required">Email é obtrigatório</div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="birthdate">Data de Nascimento</label>
+                            <input type="date" formControlName="birthdate" class="form-control" placeholder="Data de Nascimento" [ngClass]="{ 'is-invalid': submitted && f.birthdate.errors }" />
+                            <div *ngIf="submitted && f.birthdate.errors" class="invalid-feedback">
+                                <div *ngIf="f.birthdate.errors.required">Data de Nascimento é obtrigatório</div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone1">Telefone 1</label>
+                            <input type="text" formControlName="phone1" class="form-control" placeholder="Telefone 1" [ngClass]="{ 'is-invalid': submitted && f.phone1.errors }" />
+                            <div *ngIf="submitted && f.phone1.errors" class="invalid-feedback">
+                                <div *ngIf="f.phone1.errors.required">Telefone 1 é obtrigatório</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label for="registration">Matrícula</label>
+                            <input type="text" formControlName="registration" class="form-control" placeholder="Matrícula" [ngClass]="{ 'is-invalid': submitted && f.registration.errors }" />
+                            <div *ngIf="submitted && f.registration.errors" class="invalid-feedback">
+                                <div *ngIf="f.registration.errors.required">Matrícula é obtrigatório</div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="cpf">CPF</label>
+                            <input type="text" formControlName="cpf" class="form-control" placeholder="CPF" [ngClass]="{ 'is-invalid': submitted && f.cpf.errors }" />
+                            <div *ngIf="submitted && f.cpf.errors" class="invalid-feedback">
+                                <div *ngIf="f.cpf.errors.required">CPF é obtrigatório</div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="rg">RG</label>
+                            <input type="text" formControlName="rg" class="form-control" placeholder="RG" [ngClass]="{ 'is-invalid': submitted && f.rg.errors }" />
+                            <div *ngIf="submitted && f.rg.errors" class="invalid-feedback">
+                                <div *ngIf="f.rg.errors.required">RG é obtrigatório</div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone2">Telefone 2</label>
+                            <input type="text" formControlName="phone2" class="form-control" placeholder="Telefone 2" [ngClass]="{ 'is-invalid': submitted && f.phone2.errors }" />
+                            <div *ngIf="submitted && f.phone2.errors" class="invalid-feedback">
+                                <div *ngIf="f.phone2.errors.required">Telefone 2 é obtrigatório</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" style="margin-top: 20px;">
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <button [disabled]="loading" class="btn btn-primary">
+                                <span *ngIf="student">
+                                    Atualizar
+                                </span>
+                                <span *ngIf="!student">
+                                    Cadastrar
+                                </span>
+                            </button>
+                            <img *ngIf="loading" class="pl-3" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+                            <a routerLink="/" class="btn btn-link">Cancelar</a>
+                        </div>
+                    </div>
+                </div>
+            </form>
         </div>
     </div>
-    <div class="form-group">
-        <label for="email">Email</label>
-        <input type="email" formControlName="email" class="form-control" placeholder="you@example.com" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
-        <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
-            <div *ngIf="f.email.errors.required">Email é obtrigatório</div>
-        </div>
-    </div>
-    <div class="form-group">
-        <label for="cpf">CPF</label>
-        <input type="text" formControlName="cpf" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.cpf.errors }" />
-        <div *ngIf="submitted && f.cpf.errors" class="invalid-feedback">
-            <div *ngIf="f.cpf.errors.required">CPF é obtrigatório</div>
-        </div>
-    </div>
-    <div class="form-group">
-        <label for="rg">RG</label>
-        <input type="text" formControlName="rg" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.rg.errors }" />
-        <div *ngIf="submitted && f.rg.errors" class="invalid-feedback">
-            <div *ngIf="f.rg.errors.required">RG é obtrigatório</div>
-        </div>
-    </div>
-    <div class="form-group">
-        <label for="phones">Telefone 1</label>
-        <input type="text" formControlName="phones" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.phones.errors }" />
-        <div *ngIf="submitted && f.phones.errors" class="invalid-feedback">
-            <div *ngIf="f.phones.errors.required">Telefone 1 é obtrigatório</div>
-        </div>
-    </div>
-    <div class="form-group">
-        <label for="phones">Telefone 2</label>
-        <input type="text" formControlName="phones" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.phones.errors }" />
-        <div *ngIf="submitted && f.phones.errors" class="invalid-feedback">
-            <div *ngIf="f.phones.errors.required">Telefone 2 é obtrigatório</div>
-        </div>
-    </div>
-    <!--
-    <div class="form-group">
-        <label for="password">Password</label>
-        <input type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
-        <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
-            <div *ngIf="f.password.errors.required">Password is required</div>
-            <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters</div>
-        </div>
-    </div>
-    -->
-    <div class="form-group">
-        <button [disabled]="loading" class="btn btn-primary">Register</button>
-        <img *ngIf="loading" class="pl-3" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
-        <a routerLink="/" class="btn btn-link">Cancel</a>
-    </div>
-</form>
+</div>
