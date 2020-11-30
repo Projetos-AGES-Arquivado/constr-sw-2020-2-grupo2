@@ -14,6 +14,7 @@ export class RegisterComponent implements OnInit {
     student;
     loading = false;
     submitted = false;
+    phones: string[] = [];
 
     constructor(
         private formBuilder: FormBuilder,
@@ -41,7 +42,7 @@ export class RegisterComponent implements OnInit {
             //student = this.studentService.getById(this.studentId).pipe(first()).pipe(student => {
             //    this.updateForm(student)
             //  });
-        //} 
+        //}     
 
         this.registerForm = this.formBuilder.group({
             name:           [this.student ? this.student.name           : '' , Validators.required],
@@ -50,9 +51,9 @@ export class RegisterComponent implements OnInit {
             cpf:            [this.student ? this.student.cpf            : '' , Validators.required],
             rg:             [this.student ? this.student.rg             : '' , Validators.required],
             birthdate:      [this.student ? this.student.birthdate      : '' , Validators.required],
-            phone1:         [this.student ? this.student.phones[0]      : '' , Validators.required],
-            phone2:         [this.student ? this.student.phones[1]      : '']
         });
+
+        this.phones = this.student.phones;
 
     }
 
@@ -77,12 +78,27 @@ export class RegisterComponent implements OnInit {
         
     }
 
+    addPhone() {
+        this.phones.push(null);
+    }
+
+    updatePhone(updatedValue, originalPhone) {
+        let itemIndex = this.phones.findIndex(item => item == originalPhone);
+        this.phones[itemIndex] = updatedValue;
+    }
+
+    deletePhone(phone) {
+        this.phones.forEach( (item, index) => {
+            if(item === phone) this.phones.splice(index,1);
+        });
+    }
+
     register() {
 
         let createdStudent = {
             name: this.registerForm.value.name,
             email: this.registerForm.value.email,
-            phones: [this.registerForm.value.phone1,this.registerForm.value.phone2],
+            phones: this.phones.filter(x => x != null) as string[],
             cpf: this.registerForm.value.cpf,
             rg: this.registerForm.value.rg,
             birthdate: this.datePipe.transform(this.registerForm.value.birthdate, "yyyy-MM-dd"),
@@ -107,7 +123,7 @@ export class RegisterComponent implements OnInit {
         let updatedStudent = {
             name: this.registerForm.value.name,
             email: this.registerForm.value.email,
-            phones: [this.registerForm.value.phone1,this.registerForm.value.phone2],
+            phones: this.phones.filter(x => x != null) as string[],
             cpf: this.registerForm.value.cpf,
             rg: this.registerForm.value.rg,
             birthdate: this.datePipe.transform(this.registerForm.value.birthdate, "yyyy-MM-dd"),

@@ -38,10 +38,43 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="phone1">Telefone 1</label>
-                            <input type="text" formControlName="phone1" class="form-control" placeholder="Telefone 1" [ngClass]="{ 'is-invalid': submitted && f.phone1.errors }" />
-                            <div *ngIf="submitted && f.phone1.errors" class="invalid-feedback">
-                                <div *ngIf="f.phone1.errors.required">Telefone 1 é obtrigatório</div>
+                            <div class="panel panel-default main-panel" style="border: 1px solid #ced4da;"> 
+                                <div class="panel-heading">
+                                  <div class="row" style="margin: 10px;">
+                                    <div class="col-sm-7 float-left table-title">
+                                      <h2>Telefones</h2>
+                                    </div>
+                                    <div class="col-sm-5 table-title">
+                                        <button type="button" class="btn btn-primary btn-circle-sm float-right" (click)="addPhone()" style="background-color: #1976D2;">
+                                            <img class="white-filter" src="https://www.flaticon.com/svg/static/icons/svg/1237/1237946.svg" style="width: 15px;"/>
+                                        </button>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="panel-body">
+                                    <div class="table-responsive">
+                                        <table class="table table-responsive-md btn-table">
+                                            <thead>
+                                                <tr>
+                                                <th style="text-align: center;">Telefone</th>
+                                                <th style="text-align: center;">Deletar</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr *ngFor="let phone of phones">
+                                                    <td style="text-align: center;">
+                                                        <input type="text" class="form-control" value="{{phone}}" (change)="updatePhone($event.target.value, phone)" />
+                                                    </td>
+                                                    <td style="text-align: center;">
+                                                        <a (click)="deletePhone(phone)">
+                                                        <img src="https://www.flaticon.com/svg/static/icons/svg/3096/3096687.svg" style="width: 20px;"/>
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -65,13 +98,6 @@
                             <input type="text" formControlName="rg" class="form-control" placeholder="RG" [ngClass]="{ 'is-invalid': submitted && f.rg.errors }" />
                             <div *ngIf="submitted && f.rg.errors" class="invalid-feedback">
                                 <div *ngIf="f.rg.errors.required">RG é obtrigatório</div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="phone2">Telefone 2</label>
-                            <input type="text" formControlName="phone2" class="form-control" placeholder="Telefone 2" [ngClass]="{ 'is-invalid': submitted && f.phone2.errors }" />
-                            <div *ngIf="submitted && f.phone2.errors" class="invalid-feedback">
-                                <div *ngIf="f.phone2.errors.required">Telefone 2 é obtrigatório</div>
                             </div>
                         </div>
                     </div>

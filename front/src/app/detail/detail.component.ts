@@ -12,6 +12,7 @@ export class DetailComponent implements OnInit {
     student;
     loading = false;
     submitted = false;
+    phones: [];
 
     constructor(
         private formBuilder: FormBuilder,
@@ -43,6 +44,7 @@ export class DetailComponent implements OnInit {
             phone2:         [this.student ? this.student.phones[1]      : '']
         });
 
+        this.phones = this.student.phones;
     }
 
     // convenience getter for easy access to form fields

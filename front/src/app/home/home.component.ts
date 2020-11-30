@@ -20,7 +20,7 @@ export class HomeComponent implements OnInit {
     ngOnInit() {
         this.dtOptions = {
             pagingType: 'full_numbers',
-            pageLength: 2,
+            pageLength: 10,
             language: {
                 lengthMenu: "Linhas por página: _MENU_",
                 info: "_START_ - _END_ de _TOTAL_",
