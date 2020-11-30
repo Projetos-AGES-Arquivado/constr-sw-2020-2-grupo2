@@ -12,15 +12,42 @@ module.exports = {
                 exclude: /node_modules/
             },
             {
-                test: /\.(html|css)$/,
+                test: /\.css$/,
+                loaders: ['to-string-loader', 'css-loader']
+            },
+            {
+                test: /\.(html)$/,
                 loader: 'raw-loader'
             },
+            {
+                test: /.less$/,
+                use: [
+                    { loader: 'style-loader' },
+                    { loader: 'css-loader' },
+                    { loader: 'less-loader' }
+                ]
+            },
+            {
+                test: /\.(png|svg|jpe?g|gif)$/,
+                include: /images/,
+                use: [
+                  {
+                    loader: 'file-loader',
+                    options: {
+                      name: '[name].[ext]',
+                      outputPath: 'images/',
+                      publicPath: 'images/'
+                    }
+                  }
+                ]
+              }
         ]
     },
     resolve: {
         extensions: ['.ts', '.js'],
         alias: {
             '@': path.resolve(__dirname, 'src/app/'),
+            '~': path.resolve(__dirname, 'node_modules/')
         }
     },
     plugins: [

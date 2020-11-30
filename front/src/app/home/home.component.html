@@ -10,19 +10,9 @@
     </div>
   </div>
   <div class="panel panel-default main-panel"> 
-    <div class="panel-heading">
-      <div class="row" style="margin: 10px;">
-        <div class="col-sm-7 float-left table-title">
-          <h4>Alunos</h4>
-        </div>
-        <div class="col-sm-5 table-title">
-          <input class="table-search" placeholder="Search" (change)="searchStudentsByParam($event.target.value)" style="width: 90%;">
-        </div>
-      </div>
-    </div>
     <div class="panel-body">
       <div class="table-responsive">
-        <table class="table table-responsive-md btn-table">
+        <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table hover table-responsive-md btn-table">
           <thead>
             <tr>
               <th style="text-align: center;">Nome</th>
@@ -35,10 +25,10 @@
           </thead>
           <tbody>
             <tr *ngFor="let student of students">
-              <td style="text-align: center;">{{student.name}}</td>
-              <td style="text-align: center;">{{student.registration}}</td>
-              <td style="text-align: center;">{{student.email}}</td>
-              <td style="text-align: center;">{{student.cpf}}</td>
+              <td style="text-align: center;" (click)="studentDetail(student)">{{student.name}}</td>
+              <td style="text-align: center;" (click)="studentDetail(student)">{{student.registration}}</td>
+              <td style="text-align: center;" (click)="studentDetail(student)">{{student.email}}</td>
+              <td style="text-align: center;" (click)="studentDetail(student)">{{student.cpf}}</td>
               <!--<td style="text-align: center;"><button [routerLink]="['/register']" [queryParams]="{prop: '{{student.name}}'}" class="btn btn-primary">Editar</button>-->
               <td style="text-align: center;">
                 <a (click)="editStudent(student)">

@@ -2,6 +2,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule }    from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { DataTablesModule } from 'angular-datatables';
 
 // used to create fake backend
 import { fakeBackendProvider } from './_helpers';
@@ -13,20 +14,25 @@ import { AlertComponent } from './_components';
 import { JwtInterceptor, ErrorInterceptor } from './_helpers';
 import { HomeComponent } from './home';
 import { RegisterComponent } from './register';
+import { DetailComponent } from './detail';
 import { DatePipe } from '@angular/common';
+
+import * as $ from 'jquery'
 
 @NgModule({
     imports: [
         BrowserModule,
         ReactiveFormsModule,
         HttpClientModule,
+        DataTablesModule,
         routing
     ],
     declarations: [
         AppComponent,
         AlertComponent,
         HomeComponent,
-        RegisterComponent
+        RegisterComponent,
+        DetailComponent
     ],
     providers: [
         { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
