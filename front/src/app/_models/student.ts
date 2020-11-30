@@ -9,4 +9,5 @@ export class Student {
     rg: string;
     birthdate: string;
     registration: string;
+    evaluations: Array<string>;
 }

@@ -12,7 +12,8 @@ export class DetailComponent implements OnInit {
     student;
     loading = false;
     submitted = false;
-    phones: [];
+    phones: string[] = [];
+    evaluations: string[] = [];
 
     constructor(
         private formBuilder: FormBuilder,
@@ -40,11 +41,10 @@ export class DetailComponent implements OnInit {
             cpf:            [this.student ? this.student.cpf            : '' , Validators.required],
             rg:             [this.student ? this.student.rg             : '' , Validators.required],
             birthdate:      [this.student ? this.student.birthdate      : '' , Validators.required],
-            phone1:         [this.student ? this.student.phones[0]      : '' , Validators.required],
-            phone2:         [this.student ? this.student.phones[1]      : '']
         });
 
         this.phones = this.student.phones;
+        this.evaluations = this.student.evaluations;
     }
 
     // convenience getter for easy access to form fields

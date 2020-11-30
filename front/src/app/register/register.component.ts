@@ -88,9 +88,14 @@ export class RegisterComponent implements OnInit {
     }
 
     deletePhone(phone) {
-        this.phones.forEach( (item, index) => {
-            if(item === phone) this.phones.splice(index,1);
-        });
+        var r = confirm("Deseja realmente deletar o Aluno?");
+        if (r == true) {
+            this.phones.forEach( (item, index) => {
+                if(item === phone) this.phones.splice(index,1);
+            });
+        } else {
+            console.log("Telefone não deletado");
+        }
     }
 
     register() {

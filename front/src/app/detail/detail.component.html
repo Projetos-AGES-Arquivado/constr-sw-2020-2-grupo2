@@ -71,6 +71,24 @@
                                 <div *ngIf="f.rg.errors.required">RG é obtrigatório</div>
                             </div>
                         </div>
+                        <div class="form-group">
+                            <div class="panel panel-default main-panel" style="border: 1px solid #ced4da;"> 
+                                <div class="table-responsive">
+                                    <table class="table table-responsive-md btn-table">
+                                    <thead>
+                                        <tr>
+                                        <th style="text-align: center;">Notas</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let evaluation of evaluations">
+                                        <td style="text-align: center;">{{evaluation}}</td>
+                                        </tr>
+                                    </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="row" style="margin-top: 20px;">
