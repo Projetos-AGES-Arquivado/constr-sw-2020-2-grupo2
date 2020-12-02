@@ -22,6 +22,7 @@ export class HomeComponent implements OnInit {
             pagingType: 'full_numbers',
             pageLength: 10,
             language: {
+                search: "Pesquisar:",
                 lengthMenu: "Linhas por página: _MENU_",
                 info: "_START_ - _END_ de _TOTAL_",
                 paginate: {

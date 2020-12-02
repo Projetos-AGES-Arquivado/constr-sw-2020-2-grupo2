@@ -60,7 +60,8 @@ module.exports = {
             // global app config object
             config: JSON.stringify({
                 //apiUrl: 'http://localhost:4000'
-                apiUrl: 'http://ec2-34-228-52-17.compute-1.amazonaws.com:3000/api'
+                studentApiUrl: 'http://ec2-34-228-52-17.compute-1.amazonaws.com:3000/api',
+                evaluationApiUrl: 'http://ec2-52-67-129-68.sa-east-1.compute.amazonaws.com:8000/api/v1'
             })
         })
     ],

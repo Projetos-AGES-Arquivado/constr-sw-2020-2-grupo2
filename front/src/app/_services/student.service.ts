@@ -3,8 +3,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 
-import { Student } from '@/_models';
-
 @Injectable({ providedIn: 'root' })
 export class StudentService {
     constructor(private http: HttpClient) { }
@@ -16,27 +14,27 @@ export class StudentService {
 
     getAll() {
         //return this.http.get<Student[]>(`${config.apiUrl}/alunos`);      
-        return this.http.get<any[]>(`${config.apiUrl}/alunos`);
+        return this.http.get<any[]>(`${config.studentApiUrl}/alunos`);
     }
 
     getByParams(key, value) {
         let params = new HttpParams().set(key, value);
-        return this.http.get<any[]>(`${config.apiUrl}/alunos`, { params: params });
+        return this.http.get<any[]>(`${config.studentApiUrl}/alunos`, { params: params });
     }
 
     getById(id: number) {
-        return this.http.get(`${config.apiUrl}/alunos/${id}`);
+        return this.http.get(`${config.studentApiUrl}/alunos/${id}`);
     }
 
     register(student) {
-        return this.http.post(`${config.apiUrl}/alunos`, student);
+        return this.http.post(`${config.studentApiUrl}/alunos`, student);
     }
 
     update(id, student) {
-        return this.http.put(`${config.apiUrl}/alunos/${id}`, student);
+        return this.http.put(`${config.studentApiUrl}/alunos/${id}`, student);
     }
 
     delete(id: number) {
-        return this.http.delete(`${config.apiUrl}/alunos/${id}`);
+        return this.http.delete(`${config.studentApiUrl}/alunos/${id}`);
     }
 }

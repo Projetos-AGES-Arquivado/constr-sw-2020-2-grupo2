@@ -5,6 +5,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { DatePipe } from '@angular/common';
+import { EvaluationService } from '@/_services';
+import { Evaluation } from '@/_models';
 
 @Component({templateUrl: 'detail.component.html'})
 export class DetailComponent implements OnInit {
@@ -13,15 +15,15 @@ export class DetailComponent implements OnInit {
     loading = false;
     submitted = false;
     phones: string[] = [];
-    evaluations: string[] = [];
+    evaluations: Evaluation[] = [];
 
     constructor(
         private formBuilder: FormBuilder,
+        private evaluationService: EvaluationService,
         private router: Router,
         private route: ActivatedRoute,
         private datePipe: DatePipe
-    ) { 
-    }
+        ) {}
 
     ngOnInit() {
 
@@ -44,7 +46,9 @@ export class DetailComponent implements OnInit {
         });
 
         this.phones = this.student.phones;
-        this.evaluations = this.student.evaluations;
+
+        this.loadEvaluations(this.student.evaluations);
+
     }
 
     // convenience getter for easy access to form fields
@@ -62,6 +66,20 @@ export class DetailComponent implements OnInit {
 
         this.router.navigate(['/register'], { queryParams: { student: JSON.stringify(this.student) } });
         
+    }
+
+    loadEvaluations(studentEvaluationsIds) {
+        this.evaluationService.getAll().subscribe(evaluations => {
+            let response: Evaluation[] = []; 
+            evaluations.forEach(function (evaluation) {
+                if(studentEvaluationsIds.indexOf(evaluation._id) > -1) {
+                    response.push(evaluation);  
+                }
+            });
+            
+            this.evaluations = response;
+            console.log(evaluations);
+        });
     }
 
 }
